@@ -1,0 +1,59 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    card_view:cardCornerRadius="10dp"
+    card_view:cardElevation="20dp"
+    card_view:contentPadding="20dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imgCart"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@color/blue"
+            android:padding="1dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/splash_final"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtProductName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="text"
+
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            card_view:layout_constraintStart_toEndOf="@id/imgCart"
+            card_view:layout_constraintTop_toTopOf="@id/imgCart" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:maxLines="2"
+            android:text="@string/lorelypsum"
+            card_view:layout_constraintStart_toStartOf="@id/txtProductName"
+            card_view:layout_constraintTop_toBottomOf="@id/txtProductName" />
+
+        <TextView
+            android:id="@+id/txtPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$ 12.00"
+            android:textColor="@color/blue"
+            android:textStyle="bold"
+            card_view:layout_constraintBottom_toBottomOf="@id/imgCart"
+            card_view:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
