@@ -24,10 +24,11 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SignInFragment extends BaseFragment {
 
-    private FloatingActionButton fab;
-    private EditText edtUserName, edtPassword;
-    private TextView txtForgotPassword, txtSignup;
+    private FloatingActionButton mLoginButton;
+    private EditText mEdtUserName, mEdtPassword;
+    private TextView txtForgotPassword, mTxtSignup;
     private FirebaseAuth mAuth;
+
 
     @Nullable
     @Override
@@ -40,27 +41,23 @@ public class SignInFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
 
         mAuth = FirebaseAuth.getInstance();
-        fab = view.findViewById(R.id.fab);
+        mLoginButton = view.findViewById(R.id.fab);
         txtForgotPassword = view.findViewById(R.id.txtForgot);
-        edtUserName = view.findViewById(R.id.edt_userName);
-        edtPassword = view.findViewById(R.id.edt_password);
-        txtSignup = view.findViewById(R.id.txtSignup);
+        mEdtUserName = view.findViewById(R.id.edt_userName);
+        mEdtPassword = view.findViewById(R.id.edt_password);
+        mTxtSignup = view.findViewById(R.id.txtSignup);
 
 
-        txtSignup.setOnClickListener(new View.OnClickListener() {
+        mTxtSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 addFragment(new SignupFragment(), true);
-
-//                Toast.makeText(getContext(),"Hello",Toast.LENGTH_SHORT).show();
             }
         });
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 validateData();
             }
         });
@@ -71,8 +68,8 @@ public class SignInFragment extends BaseFragment {
 
 
     private void validateData() {
-        String email = edtUserName.getText().toString();
-        String password = edtPassword.getText().toString();
+        String email = mEdtUserName.getText().toString();
+        String password = mEdtPassword.getText().toString();
 
 
         if (email.isEmpty()) {
@@ -82,9 +79,7 @@ public class SignInFragment extends BaseFragment {
         } else if (password.isEmpty()) {
             showToast("Enter passeord");
         } else {
-//            showToast("YOU ARE DONE.");
-//            Intent intent=new Intent(getContext(), DashBoardActivity.class);
-//            startActivity(intent);
+
             showDialoge();
 
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {

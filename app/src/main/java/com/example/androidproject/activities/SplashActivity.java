@@ -8,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.androidproject.R;
 
+/*
+* Splash activity
+* */
 public class SplashActivity extends AppCompatActivity {
 
     @Override
