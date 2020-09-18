@@ -12,9 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.androidproject.Constats;
+import com.example.androidproject.Utils.Constats;
 import com.example.androidproject.R;
-import com.example.androidproject.Utils;
+import com.example.androidproject.Utils.Utils;
 import com.example.androidproject.activities.DashBoardActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

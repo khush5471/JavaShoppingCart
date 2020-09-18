@@ -15,10 +15,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.androidproject.BrandListData;
-import com.example.androidproject.Constats;
+import com.example.androidproject.Utils.Constats;
 import com.example.androidproject.R;
 import com.example.androidproject.Users;
-import com.example.androidproject.Utils;
+import com.example.androidproject.Utils.Utils;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

@@ -1,4 +1,4 @@
-package com.example.androidproject;
+package com.example.androidproject.Utils;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.androidproject.R;
 
 public class Utils {
 

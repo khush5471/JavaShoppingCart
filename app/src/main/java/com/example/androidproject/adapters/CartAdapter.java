@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidproject.BrandListData;
 import com.example.androidproject.R;
-import com.example.androidproject.Utils;
+import com.example.androidproject.Utils.Utils;
 
 import java.util.List;
 

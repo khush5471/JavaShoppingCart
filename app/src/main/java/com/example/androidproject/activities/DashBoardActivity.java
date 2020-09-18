@@ -19,10 +19,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidproject.BrandCategories;
 import com.example.androidproject.BrandListData;
-import com.example.androidproject.Constats;
+import com.example.androidproject.Utils.Constats;
 import com.example.androidproject.R;
 import com.example.androidproject.Users;
-import com.example.androidproject.Utils;
+import com.example.androidproject.Utils.Utils;
 import com.example.androidproject.adapters.DrawerProductAdapter;
 import com.example.androidproject.adapters.ProductAdapter;
 import com.example.androidproject.interfaces.ClickableInterface;

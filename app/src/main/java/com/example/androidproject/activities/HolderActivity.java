@@ -1,13 +1,12 @@
 package com.example.androidproject.activities;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 import com.example.androidproject.BrandListData;
 import com.example.androidproject.R;
-import com.example.androidproject.Constats;
+import com.example.androidproject.Utils.Constats;
 import com.example.androidproject.fragments.ViewCartFragment;
 import com.example.androidproject.fragments.ViewProductFragment;
 
