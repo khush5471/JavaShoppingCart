@@ -1,4 +1,4 @@
-package com.example.androidproject.activities;
+package com.example.androidproject.Views.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,11 +17,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.androidproject.BrandCategories;
-import com.example.androidproject.BrandListData;
+import com.example.androidproject.Model.BrandCategories;
+import com.example.androidproject.Model.BrandListData;
 import com.example.androidproject.Utils.Constats;
 import com.example.androidproject.R;
-import com.example.androidproject.Users;
+import com.example.androidproject.Model.Users;
 import com.example.androidproject.Utils.Utils;
 import com.example.androidproject.adapters.DrawerProductAdapter;
 import com.example.androidproject.adapters.ProductAdapter;

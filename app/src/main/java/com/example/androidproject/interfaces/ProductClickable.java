@@ -1,7 +1,6 @@
 package com.example.androidproject.interfaces;
 
-import com.example.androidproject.BrandCategories;
-import com.example.androidproject.BrandListData;
+import com.example.androidproject.Model.BrandListData;
 
 public interface ProductClickable {
 

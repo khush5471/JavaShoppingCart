@@ -1,4 +1,4 @@
-package com.example.androidproject.fragments;
+package com.example.androidproject.Views.fragments;
 
 import android.app.Dialog;
 import android.content.Context;

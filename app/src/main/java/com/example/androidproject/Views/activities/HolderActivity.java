@@ -1,14 +1,14 @@
-package com.example.androidproject.activities;
+package com.example.androidproject.Views.activities;
 
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-import com.example.androidproject.BrandListData;
+import com.example.androidproject.Model.BrandListData;
 import com.example.androidproject.R;
 import com.example.androidproject.Utils.Constats;
-import com.example.androidproject.fragments.ViewCartFragment;
-import com.example.androidproject.fragments.ViewProductFragment;
+import com.example.androidproject.Views.fragments.ViewCartFragment;
+import com.example.androidproject.Views.fragments.ViewProductFragment;
 
 public class HolderActivity extends BaseActivity {
 

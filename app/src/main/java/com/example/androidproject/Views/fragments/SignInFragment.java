@@ -1,4 +1,4 @@
-package com.example.androidproject.fragments;
+package com.example.androidproject.Views.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
 import com.example.androidproject.Utils.Constats;
 import com.example.androidproject.R;
 import com.example.androidproject.Utils.Utils;
-import com.example.androidproject.activities.DashBoardActivity;
+import com.example.androidproject.Views.activities.DashBoardActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;

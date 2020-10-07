@@ -8,12 +8,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.androidproject.BrandCategories;
+import com.example.androidproject.Model.BrandCategories;
 import com.example.androidproject.R;
 import com.example.androidproject.interfaces.ClickableInterface;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 public class DrawerProductAdapter extends RecyclerView.Adapter<DrawerProductAdapter.MyViewHolder> {
 

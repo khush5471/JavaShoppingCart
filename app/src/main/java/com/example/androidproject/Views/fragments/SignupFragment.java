@@ -1,4 +1,4 @@
-package com.example.androidproject.fragments;
+package com.example.androidproject.Views.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,10 +17,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.androidproject.BrandListData;
+import com.example.androidproject.Model.BrandListData;
 import com.example.androidproject.Utils.Constats;
 import com.example.androidproject.R;
-import com.example.androidproject.Users;
+import com.example.androidproject.Model.Users;
 import com.example.androidproject.Utils.Utils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;

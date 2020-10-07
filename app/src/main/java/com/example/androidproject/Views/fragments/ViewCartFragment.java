@@ -1,4 +1,4 @@
-package com.example.androidproject.fragments;
+package com.example.androidproject.Views.fragments;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,10 +14,10 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.androidproject.BrandListData;
+import com.example.androidproject.Model.BrandListData;
 import com.example.androidproject.Utils.Constats;
 import com.example.androidproject.R;
-import com.example.androidproject.Users;
+import com.example.androidproject.Model.Users;
 import com.example.androidproject.Utils.Utils;
 import com.example.androidproject.adapters.CartAdapter;
 import com.google.firebase.database.DataSnapshot;

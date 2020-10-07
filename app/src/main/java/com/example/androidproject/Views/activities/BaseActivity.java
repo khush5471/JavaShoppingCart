@@ -1,4 +1,4 @@
-package com.example.androidproject.activities;
+package com.example.androidproject.Views.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;

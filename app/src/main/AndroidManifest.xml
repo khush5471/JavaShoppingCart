@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:hardwareAccelerated="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.SplashActivity"
+        <activity android:name=".Views.activities.SplashActivity"
             android:theme="@style/coustomTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,10 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.SecondActivity"
+        <activity android:name=".Views.activities.SecondActivity"
             android:theme="@style/coustomTheme"/>
-        <activity android:name=".activities.DashBoardActivity" android:theme="@style/coustomTheme"/>
-        <activity android:name=".activities.HolderActivity" android:theme="@style/coustomTheme"/>
+        <activity android:name=".Views.activities.DashBoardActivity" android:theme="@style/coustomTheme"/>
+        <activity android:name=".Views.activities.HolderActivity" android:theme="@style/coustomTheme"/>
     </application>
 
 </manifest>

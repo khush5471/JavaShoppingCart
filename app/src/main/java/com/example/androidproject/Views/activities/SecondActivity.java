@@ -1,17 +1,11 @@
-package com.example.androidproject.activities;
+package com.example.androidproject.Views.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.androidproject.R;
-import com.example.androidproject.fragments.SignInFragment;
+import com.example.androidproject.Views.fragments.SignInFragment;
 
 public class SecondActivity extends BaseActivity {
 

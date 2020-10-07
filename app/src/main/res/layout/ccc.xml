@@ -6,7 +6,7 @@
 
     android:background="@color/black_blue">
 
-    <com.example.androidproject.activities.CircleImageView
+    <com.example.androidproject.Views.activities.CircleImageView
         android:id="@+id/imgUser"
         android:layout_width="100dp"
         android:layout_height="100dp"
