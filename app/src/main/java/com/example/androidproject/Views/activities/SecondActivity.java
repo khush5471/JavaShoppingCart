@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 
 import com.example.androidproject.R;
-import com.example.androidproject.Views.fragments.SignInFragment;
+import com.example.androidproject.Views.fragments.SignIn.SignInFragment;
 
 public class SecondActivity extends BaseActivity {
 

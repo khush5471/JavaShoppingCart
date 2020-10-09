@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.util.Patterns;
 import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,8 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.androidproject.R;
+
+import java.util.regex.Pattern;
 
 public class Utils {
 
@@ -95,5 +98,12 @@ public class Utils {
                 R.string.preference_file_key), Context.MODE_PRIVATE);
         String getReturnValue = sharedPref.getString(key,"");
         return getReturnValue;
+    }
+
+
+    //checks if the email is valid or not
+    public boolean validEmail(String email) {
+        Pattern pattern = Patterns.EMAIL_ADDRESS;
+        return pattern.matcher(email).matches();
     }
 }
