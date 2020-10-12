@@ -2,4 +2,15 @@
     <string name="app_name">AndroidProject</string>
     <string name="lorelypsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
     <string name="preference_file_key">SHARED_PREFERNCE_BUCKET</string>
+    <string name="email_empty">Please enter email</string>
+    <string name="password_empty">Enter passeord</string>
+    <string name="invalid_email">Enter valid email</string>
+    <string name="validation_name">Enter name and it should be atlest 2 characters</string>
+    <string name="error_useralready_exists">Enter email</string>
+    <string name="validation_password">Password should be atleast 5 characters</string>
+    <string name="confirm_password_empty">please enter confirm passwrd</string>
+    <string name="password_confirmpassword_mismatch">confirm password and password donot match</string>
+    <string name="image_empty">Please select image</string>
+    <string name="user_registered">User Registered Successfully</string>
+    <string name="error_user_alredy_exists">User already exists in database</string>
 </resources>

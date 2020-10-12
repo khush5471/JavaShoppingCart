@@ -19,8 +19,7 @@ import com.example.androidproject.Utils.Constats;
 import com.example.androidproject.Utils.Utils;
 import com.example.androidproject.Views.activities.DashBoardActivity;
 import com.example.androidproject.Views.fragments.BaseFragment;
-import com.example.androidproject.Views.fragments.SignupFragment;
-import com.google.android.gms.tasks.OnCompleteListener;
+import com.example.androidproject.Views.fragments.SignUp.SignupFragment;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.AuthResult;
@@ -52,6 +51,22 @@ public class SignInFragment extends BaseFragment implements View.OnClickListener
 
         String currentUser = Utils.getInstance().readData(getContext(), Constats.USER_EMAIL);
         Log.e("CURRENT_USER", currentUser + "ss");
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.fab: {
+                String email = mEdtUserName.getText().toString();
+                String password = mEdtPassword.getText().toString();
+                mSignInViewModel.loginUserUsingEmailPassword(email, password, getActivity());
+            }
+            break;
+            case R.id.txtSignup: {
+                addFragment(new SignupFragment(), true);
+            }
+            break;
+        }
     }
 
     /*Initialize all the views
@@ -120,19 +135,5 @@ public class SignInFragment extends BaseFragment implements View.OnClickListener
     }
 
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.fab: {
-                String email = mEdtUserName.getText().toString();
-                String password = mEdtPassword.getText().toString();
-                mSignInViewModel.loginUserUsingEmailPassword(email, password, getActivity());
-            }
-            break;
-            case R.id.txtSignup: {
-                addFragment(new SignupFragment(), true);
-            }
-            break;
-        }
-    }
+
 }
