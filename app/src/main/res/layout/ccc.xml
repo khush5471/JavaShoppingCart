@@ -111,7 +111,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerProductList"
+        android:id="@+id/recyclerBrandList"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 

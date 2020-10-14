@@ -1,130 +1,150 @@
-package com.example.androidproject.Views.activities;
+package com.example.androidproject.Views.fragments.Home;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidproject.Model.BrandCategories;
 import com.example.androidproject.Model.BrandListData;
-import com.example.androidproject.Utils.Constats;
 import com.example.androidproject.R;
-import com.example.androidproject.Model.Users;
-import com.example.androidproject.Utils.Utils;
-import com.example.androidproject.adapters.DrawerProductAdapter;
+import com.example.androidproject.Utils.FireBaseHandler;
+import com.example.androidproject.Views.activities.DashBoardActivity;
+import com.example.androidproject.Views.fragments.BaseFragment;
 import com.example.androidproject.adapters.ProductAdapter;
 import com.example.androidproject.interfaces.ClickableInterface;
 import com.example.androidproject.interfaces.ProductClickable;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class DashBoardActivity extends BaseActivity implements View.OnClickListener, ClickableInterface, ProductClickable {
+public class HomeFragment extends BaseFragment implements View.OnClickListener, ClickableInterface, ProductClickable {
 
 
     private DrawerLayout mDrawer;
-    private ImageView mImgDrawer, mImgViewUser, mImgCart;
+    private ImageView mImgDrawer, mImgCart;
     private TextView mTxtHeading;
-    private Button mButtonLogout;
     private RecyclerView mRecyclerProduct, mRecyClerDrawer;
-    private RecyclerView.Adapter mAdapter, mAdaterDrawer;
+    private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
-
-    ArrayList<BrandCategories> mListDrawer;
-    ArrayList<BrandListData> mListBrands;
-    private ArrayList<Users> mUserList;
-
-
-    FirebaseDatabase database;
-    DatabaseReference myUserReferences;
+    private ArrayList<BrandListData> mListBrands;
+    private String mSelectedBrand = "Nike";
+    private HomeViewModel mViewModel;
 
 
-    String mCurrentUser;
-    String mCurrentUserImage;
-
-    String mSelectedBrand = "Nike";
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_home, container, false);
+    }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        init(view);
+        attachObservers();
+        mViewModel.getProductList(mSelectedBrand);
 
-        mRecyclerProduct = findViewById(R.id.recyclerProducts);
-        mRecyClerDrawer = findViewById(R.id.recyclerBrandList);
-        mImgDrawer = findViewById(R.id.mImgDrawer);
-        mImgViewUser = findViewById(R.id.imgUser);
-        mImgCart = findViewById(R.id.mImgCart);
+    }
 
-        mDrawer = findViewById(R.id.drawer_layout);
-        mTxtHeading = findViewById(R.id.txtHeadnig);
-        mButtonLogout = findViewById(R.id.buttonLogout);
+    @Override
+    public void onClick(View v) {
 
-        mListDrawer = new ArrayList<>();
-        mListBrands = new ArrayList<>();
-        mUserList = new ArrayList<>();
+    }
 
+    @Override
+    public void getBrandListing(BrandCategories brandCategories) {
 
-        layoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+    }
+
+    @Override
+    public void getBrandData(BrandListData brandCategories) {
+
+    }
+
+    /*Initialize the views*/
+    private void init(View view) {
+        mRecyclerProduct = view.findViewById(R.id.recyclerProducts);
+        mImgCart = view.findViewById(R.id.mImgCart);
+        mTxtHeading = view.findViewById(R.id.txtHeadnig);
+
+        layoutManager = new GridLayoutManager(getContext(), 2, GridLayoutManager.VERTICAL, false);
         mRecyclerProduct.setLayoutManager(layoutManager);
 
+        mListBrands = new ArrayList<>();
 
-        database = FirebaseDatabase.getInstance();
-        myUserReferences = database.getReference("USERS");
+        mViewModel=new ViewModelProvider(this).get(HomeViewModel.class);
 
-//        myRef.setValue("KHUSHPREET, SINGH!");
-
-        mImgDrawer.setOnClickListener(this);
-        mButtonLogout.setOnClickListener(this);
-        mImgCart.setOnClickListener(this);
-
-        setDataListToFirebase();
-
-
-        getBrands();
-        getUsers();
-
-
-        mCurrentUser = Utils.getInstance().readData(this, Constats.USER_EMAIL);
-        Log.e("CURRENT_USER", mCurrentUser + "ss");
     }
 
-    private void setDataInViews() {
 
-        Log.e("@@@@@@", "2222222222" + mUserList.size());
-        if (!mUserList.isEmpty()) {
-            for (Users data1 : mUserList) {
-
-                if (data1.getEmail().equals(mCurrentUser)) {
-                    mCurrentUserImage = data1.getImage();
-                    Log.e("@@@@@@", mCurrentUserImage);
-
-                    break;
-
-                }
+    /*Attaching observer to get the data from the response
+    * */
+    private void attachObservers(){
+        mViewModel.mBrandProductList.observe(this, new Observer<ArrayList<BrandListData>>() {
+            @Override
+            public void onChanged(ArrayList<BrandListData> brandListData) {
+                mListBrands.clear();
+                mListBrands.addAll(brandListData);
+                mAdapter = new ProductAdapter(mListBrands, getContext(), HomeFragment.this);
+                mRecyclerProduct.setAdapter(mAdapter);
             }
-        }
-
-        if (mCurrentUserImage != null && !mCurrentUserImage.isEmpty()) {
-            Utils.getInstance().downloadImageByGlide(getApplicationContext(), mCurrentUserImage, mImgViewUser);
-        }
+        });
     }
 
+    private void getBrandListings() {
+        mListBrands.clear();
+        FireBaseHandler.getInstance().getFirebaseDatabaseReference("USERS").child("Brands").child(mSelectedBrand).child("mListBrandData").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Log.e("SNAPSHOT-BRANDS", "" + snapshot.getValue());
+
+//                BrandListData data = snapshot.getValue(BrandListData.class);
+                if (null != null) {
+                } else {
+                    for (DataSnapshot child : snapshot.getChildren()) {
+//                        Log.e("testing", "data " + child.getValue());
+                        BrandListData userData = child.getValue(BrandListData.class);
+                        mListBrands.add(userData);
+//                        Log.e("okok", "Title = " + child.getKey() + " " + userData.getId() + " length " + userData.getProductName());
+                    }
+                }
+
+
+//                layoutManager = new LinearLayoutManager(getApplicationContext());
+//                mRecyClerDrawer.setLayoutManager(layoutManager);
+//                mAdaterDrawer = new DrawerProductAdapter(mListDrawer);
+//                mRecyClerDrawer.setAdapter(mAdaterDrawer);
+
+//                Log.e("DDDDD"," "+mListBrands.get(3).getProductName());
+                mAdapter = new ProductAdapter(mListBrands, getContext(), HomeFragment.this);
+                mRecyclerProduct.setAdapter(mAdapter);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+
+    //This code is currently not in use as this code is used only used once for adding data to firebase
     private void setDataListToFirebase() {
 
 //        myUserReferences.child("BrandCategories").child("Nike").setValue(new BrandCategories(1,"Nike"));
@@ -473,162 +493,5 @@ public class DashBoardActivity extends BaseActivity implements View.OnClickListe
 //        myUserReferences.child("Brands").child("Reebok").setValue(new BrandEntity("Reebok", mList));
 //        myUserReferences.child("Brands").child("New Balance").setValue(new BrandEntity("New Balance", mList));
 
-    }
-
-
-    private void getBrands() {
-        mListDrawer.clear();
-        myUserReferences.child("BrandCategories").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                Log.e("SNAPSHOT", "" + snapshot.getValue());
-
-                BrandCategories data = snapshot.getValue(BrandCategories.class);
-                if (data == null) {
-                } else {
-                    for (DataSnapshot child : snapshot.getChildren()) {
-                        BrandCategories userData = child.getValue(BrandCategories.class);
-                        mListDrawer.add(userData);
-//                        Log.e("okok", "Title = " + child.getKey() + " " + userData.getBrandName() + " length " + userData.getId());
-                    }
-                }
-
-
-                layoutManager = new LinearLayoutManager(getApplicationContext());
-                mRecyClerDrawer.setLayoutManager(layoutManager);
-                mAdaterDrawer = new DrawerProductAdapter(mListDrawer, DashBoardActivity.this);
-                mRecyClerDrawer.setAdapter(mAdaterDrawer);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
-        getBrandListings();
-    }
-
-    private void getBrandListings() {
-        mListBrands.clear();
-        myUserReferences.child("Brands").child(mSelectedBrand).child("mListBrandData").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.e("SNAPSHOT-BRANDS", "" + snapshot.getValue());
-
-//                BrandListData data = snapshot.getValue(BrandListData.class);
-                if (null != null) {
-                } else {
-                    for (DataSnapshot child : snapshot.getChildren()) {
-//                        Log.e("testing", "data " + child.getValue());
-                        BrandListData userData = child.getValue(BrandListData.class);
-                        mListBrands.add(userData);
-//                        Log.e("okok", "Title = " + child.getKey() + " " + userData.getId() + " length " + userData.getProductName());
-                    }
-                }
-
-
-//                layoutManager = new LinearLayoutManager(getApplicationContext());
-//                mRecyClerDrawer.setLayoutManager(layoutManager);
-//                mAdaterDrawer = new DrawerProductAdapter(mListDrawer);
-//                mRecyClerDrawer.setAdapter(mAdaterDrawer);
-
-//                Log.e("DDDDD"," "+mListBrands.get(3).getProductName());
-                mAdapter = new ProductAdapter(mListBrands, getApplicationContext(), DashBoardActivity.this);
-                mRecyclerProduct.setAdapter(mAdapter);
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-    }
-
-    private void getUsers() {
-        myUserReferences.child("ACCOUNTS").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.e("SNAPSHOT", "" + snapshot.getValue());
-
-
-                //first check if data on firebase empty or not
-                Users data = snapshot.getValue(Users.class);
-                if (data == null) {
-                    Toast.makeText(DashBoardActivity.this, "Data Empty", Toast.LENGTH_SHORT).show();
-                } else {
-                    mUserList.clear();
-                    for (DataSnapshot child : snapshot.getChildren()) {
-                        Users userData = child.getValue(Users.class);
-                        mUserList.add(userData);
-                        Log.e("++++++++", "Title = " + child.getKey() + " " + userData.getEmail() + " length " + mUserList.size());
-                    }
-
-
-                    setDataInViews();
-                }
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
-    }
-
-    @Override
-    public void onClick(View v) {
-
-        switch (v.getId()) {
-            case R.id.mImgDrawer: {
-                mDrawer.openDrawer(Gravity.LEFT);
-//                Toast.makeText(getApplicationContext(),"ok",Toast.LENGTH_SHORT).show();
-            }
-            break;
-
-            case R.id.buttonLogout: {
-                mDrawer.closeDrawer(Gravity.LEFT);
-                finish();
-                Intent intent=new Intent(DashBoardActivity.this,SecondActivity.class);
-                startActivity(intent);
-            }
-            break;
-
-            case R.id.mImgCart:{
-                Intent intent = new Intent(DashBoardActivity.this, HolderActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putInt(Constats.SELECTED_FRAGMENT, 2);
-                intent.putExtra(Constats.PUT_EXTRA, bundle);
-                startActivity(intent);
-            }
-            break;
-        }
-    }
-
-    @Override
-    public void getBrandListing(BrandCategories brandCategories) {
-        mSelectedBrand = brandCategories.getBrandName();
-        mTxtHeading.setText(brandCategories.getBrandName());
-        mDrawer.closeDrawer(Gravity.LEFT);
-        getBrandListings();
-    }
-
-    @Override
-    public void getBrandData(BrandListData brandCategories) {
-
-        Intent intent = new Intent(DashBoardActivity.this, HolderActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putParcelable(Constats.BUNDLE_DATA, brandCategories);
-        bundle.putInt(Constats.SELECTED_FRAGMENT, 1);
-        intent.putExtra(Constats.PUT_EXTRA, bundle);
-        startActivity(intent);
     }
 }
