@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 import com.example.androidproject.Model.BrandListData;
 import com.example.androidproject.R;
 import com.example.androidproject.Utils.Constats;
-import com.example.androidproject.Views.fragments.ViewCart.ViewCartFragment;
+import com.example.androidproject.Views.fragments.Cart.CartFragment;
 import com.example.androidproject.Views.fragments.ViewProductFragment;
 
 public class HolderActivity extends BaseActivity {
@@ -29,7 +29,7 @@ public class HolderActivity extends BaseActivity {
             addFragment(productFragment,false);
 
         }else if(data.getInt(Constats.SELECTED_FRAGMENT)==2){
-            addFragment(new ViewCartFragment(),false);
+            addFragment(new CartFragment(),false);
         }
 
     }

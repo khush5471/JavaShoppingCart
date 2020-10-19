@@ -1,4 +1,4 @@
-package com.example.androidproject.Views.fragments.ViewCart;
+package com.example.androidproject.Views.fragments.Cart;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,7 +26,7 @@ import com.example.androidproject.adapters.CartAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewCartFragment extends BaseFragment implements View.OnClickListener {
+public class CartFragment extends BaseFragment implements View.OnClickListener {
 
     private RecyclerView mRecyclerCart;
     private Button mBtnCheckout;
@@ -35,7 +35,7 @@ public class ViewCartFragment extends BaseFragment implements View.OnClickListen
     private RecyclerView.LayoutManager layoutManager;
     String mCurrentUserEmail;
     private List<BrandListData> mListCart = new ArrayList<>();
-    private ViewCartViewModel mViewModel;
+    private CartViewModel mViewModel;
 
 
     @Nullable
@@ -72,7 +72,7 @@ public class ViewCartFragment extends BaseFragment implements View.OnClickListen
      * Initialoze the variables*/
     private void init(View view) {
 
-        mViewModel = new ViewModelProvider(this).get(ViewCartViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(CartViewModel.class);
         mRecyclerCart = view.findViewById(R.id.recyclerViewCart);
         mBtnCheckout = view.findViewById(R.id.buttonCheckout);
         mImgBack = view.findViewById(R.id.mImgBack);
