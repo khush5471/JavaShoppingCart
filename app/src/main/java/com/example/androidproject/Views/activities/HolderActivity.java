@@ -8,7 +8,7 @@ import com.example.androidproject.Model.BrandListData;
 import com.example.androidproject.R;
 import com.example.androidproject.Utils.Constats;
 import com.example.androidproject.Views.fragments.Cart.CartFragment;
-import com.example.androidproject.Views.fragments.ViewProductFragment;
+import com.example.androidproject.Views.fragments.ViewProduct.ViewProductFragment;
 
 public class HolderActivity extends BaseActivity {
 
