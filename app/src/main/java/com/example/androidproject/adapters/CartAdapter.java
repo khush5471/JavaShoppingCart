@@ -1,6 +1,7 @@
 package com.example.androidproject.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder>{
         Utils.getInstance().downloadImageByGlide(mContext,mList.get(position).getThumbnail(),holder.mImgProduct);
     }
 
+    public void refreshData(List<BrandListData> mDataList){
+        Log.e("In","referseh");
+        mList.addAll(mDataList);
+        notifyDataSetChanged();
+    }
 
     @Override
     public int getItemCount() {
