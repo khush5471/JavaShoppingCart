@@ -1,4 +1,4 @@
-package com.example.androidproject.Views.fragments;
+package com.example.androidproject.Views.fragments.forgotpassword;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,8 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.androidproject.R;
+import com.example.androidproject.Views.fragments.BaseFragment;
 
-public class ForgotPasswordFragment extends  BaseFragment {
+public class ForgotPasswordFragment extends BaseFragment {
 
     @Nullable
     @Override
