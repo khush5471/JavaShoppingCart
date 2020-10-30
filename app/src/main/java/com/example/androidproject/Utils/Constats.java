@@ -8,4 +8,6 @@ public class Constats {
     public static String    SELECTED_FRAGMENT="SELECTED_FRAGMENT";
     public static String    PUT_EXTRA="put_extra";
     public static String USER_EMAIL="useremail";
+    public static int PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 123;
+
 }
