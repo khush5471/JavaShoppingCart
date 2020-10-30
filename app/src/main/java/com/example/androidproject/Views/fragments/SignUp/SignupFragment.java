@@ -1,7 +1,10 @@
 package com.example.androidproject.Views.fragments.SignUp;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -20,6 +23,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.androidproject.R;
 import com.example.androidproject.Utils.Constats;
+import com.example.androidproject.Utils.DialogeHelper;
 import com.example.androidproject.Utils.FireBaseHandler;
 import com.example.androidproject.Utils.Utils;
 import com.example.androidproject.Views.fragments.BaseFragment;
@@ -68,7 +72,12 @@ public class SignupFragment extends BaseFragment implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.imgUser: {
-                Utils.getInstance().selectPhoto(SignupFragment.this);
+                if (Utils.getInstance().checkPermission(getContext())) {
+                    Utils.getInstance().selectPhoto(SignupFragment.this);
+                }else {
+                    requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE}, Constats.PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+
+                }
             }
             break;
             case R.id.fab: {
@@ -79,6 +88,20 @@ public class SignupFragment extends BaseFragment implements View.OnClickListener
                 mViewModel.signupUsers(name, email, password, confirmPassword, mImgUrl, mUserList, getActivity());
             }
             break;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if(requestCode==Constats.PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE){
+
+            if (grantResults!=null && (grantResults[0]== PackageManager.PERMISSION_GRANTED)){
+                Utils.getInstance().selectPhoto(SignupFragment.this);
+            }else if (grantResults!=null && (grantResults[0]== PackageManager.PERMISSION_DENIED)){
+                DialogeHelper.getInstance().createPermissionDeniedDialog(getActivity());
+            }
         }
     }
 

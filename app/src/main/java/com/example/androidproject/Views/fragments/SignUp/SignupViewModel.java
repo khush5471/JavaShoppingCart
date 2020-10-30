@@ -93,7 +93,7 @@ public class SignupViewModel extends ViewModel {
 
                             if (task.isSuccessful()){
                                 Log.e("in success","task");
-                                FireBaseHandler.getInstance().getFirebaseDatabaseReference("ACCOUNTS")
+                                FireBaseHandler.getInstance().getFirebaseDatabaseReference("USERS").child("ACCOUNTS")
                                         .child(name)
                                         .setValue(new Users(email, password, mImgUrl, name, new ArrayList<BrandListData>()));
 

@@ -14,4 +14,7 @@
     <string name="user_registered">User Registered Successfully</string>
     <string name="error_user_alredy_exists">User already exists in database</string>
     <string name="total_purchase_price">YOUR TOTAL PURCHASE PRICE IS $</string>
+    <string name="permission_denied">Permission has been denied, you need to give permission to do the operation, press OK to open settings</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">Ok</string>
 </resources>
